@@ -1,0 +1,87 @@
+    <div class="content justify-content-center" id="socketManagementSection">
+        <div class="row justify-content-center separate" style="text-align:center; margin-left:30px; margin-right:30px; ">
+            <h1>Web Socket Management Example</h1>
+        </div>
+        <div class="row justify-content-center separate" style="text-align:center; margin-left:40px; margin-right:40px; padding-top:30px;  ">
+            <div class="col justify-content-center" style=" width:auto; text-align:left; ">
+                <h3>SocketManager.js</h3>
+                <p class="" style="white-space:pre-wrap;padding:0; font-size:15px; line-height:15px; width:800px"><comment>/**
+    * Initializes socket and creates website response to
+    * server messages
+    *
+    * Initializes socket(a)
+    * Upon connection(b)
+    *      request accounts
+    *      request groups
+    * Response on message(c)
+    *      creates error message when message result is fail
+    *      otherwise execute proper response
+    * Return socket
+    * */
+        </comment>
+        <va>var</va> socketManager = (<va>function</va> () {
+        <comment>//(a)</comment>
+        <va>var</va> address = <pt>"ws://localhost:6550/"</pt>;
+        <va>var</va> socket = <va>new</va> WebSocket(address);
+        socket.onopen = <va>function</va> () {
+            console.log(<pt>"Connected to Server."</pt>);
+        };
+        socket.onclose = <va>function</va> () {
+            console.log(<pt>"Disconnected from Server."</pt>);
+        };
+        <comment>//(b)</comment>
+        socket.onerror = <va>function</va> () {
+            console.log(<pt>"Unable to Connect to Server."</pt>);
+        };
+        socket.addEventListener(<pt>'open'</pt>, <va>function</va> (event) {
+            console.log(<pt>"Connection is open."</pt>);
+        });
+        socket.onmessage = <va>function</va> (evnt) {
+            console.log(<pt>"Message Recieved: " + evnt.data + "."</pt>);
+            var message = JSON.parse(evnt.data);
+            <comment>//(c)--Depends on how the server formats</comment>
+            <va>if</va> (message.result == <pt>"Fail"</pt>) {
+                window.alert(<pt>"Error "</pt> + message.response +<pt>": "</pt> + message.detail);
+            }
+            <va>else</va> {
+                <va>switch</va> (message.response) {
+                    <va>case</va> <pt>"response 1"</pt>:
+                    {
+                        <va>break</va>;
+                    }
+                    <va>default</va>:
+                    {
+                        location.reload();
+                    }
+            }   }   }
+            <va>return</va> {
+                getSocket: <va>function</va> () {
+                    <va>return</va> socket;
+                }
+            }
+        })();
+
+        $(window).on(<pt>'beforeunload'</pt>, <va>function</va> () {
+            socket.close();
+        });
+
+        <va>function</va> request(request, content) {
+            var request = {
+                request: request, fields: content
+            };
+            sendRequest(request);
+        };
+
+        <va>function</va> sendRequest(request) {
+            console.log(request);
+            socket.send(JSON.stringify(request));
+        };
+                </p>
+                <br />
+                <h3>Usage</h3>
+                <p style="white-space:pre-wrap">
+                    <br />  <va>var</va> socket = socketManager.getSocket();
+                </p>
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,757 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta name="viewport" charset="utf-8" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no" />
+    <title>ToolBox</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="main.css">
+    <script src="JavaScript/canvas.js"></script>
+    <script src="JavaScript/introPage.js"></script>
+    <script src="JavaScript/animations.js"></script>
+    <script src="JavaScript/graph.js"></script>
+    <script src="JavaScript/graphView.js"></script>
+    <script src="JavaScript/dragAndDrop.js"></script>
+    <script src="JavaScript/svg.js"></script>
+    <script src="JavaScript/main.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <!--Needed for Maps-->
+    <title></title>
+</head>
+
+
+<body id="bd" onload="initializeContent();">
+    <div class="initialOverlay cover" id="initialPage">
+        <div class="absoluteCenter">
+            <button class="tools" id="toolButtonForSpace"> <m style="position:relative; font-size:5vw;right:.3vw; padding:0; margin:0;">&#128736;</m></button>
+            <h2 style="font-family: 'OCR A'; font-size:5vw;">Toolbox</h2>
+        </div>
+        <div class="absoluteCenter">
+            <img src="images/trail.png" id="trail" />
+            <!--   <canvas id="shipTrailCanvas" width="650" height="625"> </canvas>-->
+        </div>
+        <div class="absoluteCenter">
+            <img src="images/trailAndShip.png" id="shipObject" />
+        </div>
+        <!-- <div style="transform:scale(.5) rotate(10deg); width:0; height:0;">
+         <img src="images/star0.png" style="position:absolute;left:0;" />
+     </div>-->
+    </div>
+
+    <div class="cover backgroundImage">
+    </div>
+
+    <div class="content" style="display:none; top:0vw; z-index:0; background-color:transparent" id="mainButtons">
+        <div class="row justify-content-center" style="padding-top:.25vw">
+            <button class="tools" id="toolImg" style="position:absolute; text-align:center; margin:auto; "> <m style="position:relative; font-size:5vw;right:.3vw; padding:0; margin:0;">&#128736;</m></button>
+        </div>
+    </div>
+    <button class="toggle " style="position:fixed; left:30px; padding-right:10px; z-index:7; bottom:50%; " onclick="lastSection();">
+        <p style="padding:0; position:relative; top:-8px;margin:0;">&#171;</p>
+    </button>
+    <button class="toggle" style="padding-left:10px; position:fixed; right:30px; bottom:50%;z-index:7; " onclick="nextSection();">
+        <p style="padding:0; position:relative; top:-8px;margin:0;">&#187;</p>
+    </button>
+
+    <div class="content justify-content-center fadein" id="fontSection" style="font-size:20px;display:none">
+        <div class="row justify-content-center separate header">
+            <h1> Font Guide</h1>
+        </div>
+
+        <div class="row separate" >
+            <div class="col" style="text-align:center">
+                <p style="font-family:'Agency FB'">Agency FB</p>
+                <p style="font-family:Algerian">Algerian</p>
+                <p style="font-family:Arial">Arial</p>
+                <p style="font-family:'Arial Rounded MT'">Arial Rounded MT</p>
+                <p style="font-family:Arial, Helvetica, sans-serif">Arial, Helvetica, sans-serif</p>
+                <p style="font-family:Bahnschrift">Bahnschrift</p>
+                <p style="font-family:'Baskerville Old Face'">Baskerville Old Face</p>
+                <p style="font-family:'Bauhaus 93'">Bauhaus 93</p>
+                <p style="font-family:'Bell MT'">Bell MT</p>
+                <p style="font-family:'Berlin Sans FB'">Berlin Sans FB</p>
+                <p style="font-family:'Bernard MT'">Bernard MT</p>
+                <p style="font-family:'Blackadder ITC'">Blackadder ITC</p>
+                <p style="font-family:'Bodoni MT'">Bodoni MT</p>
+                <p style="font-family:'Bodoni MT Poster'">Bodoni MT Poster</p>
+                <p style="font-family:'Book Antiqua'">Book Antiqua</p>
+                <p style="font-family:'Bookman Old Style'">Bookman Old Style</p>
+                <p style="font-family:'Bookshelf Symbol 7'">Bookshelf Symbol 7</p>
+                <p style="font-family:'Bradley Hand ITC'">Bradley Hand ITC</p>
+                <p style="font-family:Britannic">Britannic</p>
+                <p style="font-family:Broadway">Broadway</p>
+                <p style="font-family:'Brush Script MT'">Brush Script MT</p>
+                <p style="font-family:Calibri">Calibri</p>
+                <p style="font-family:'Californian FB'">Californian FB</p>
+                <p style="font-family:'Calisto MT'">Calisto MT</p>
+                <p style="font-family:Cambria">Cambria</p>
+                <p style="font-family:'Cambria Math'">Cambria Math</p>
+                <p style="font-family:Cambria, Cochin, Georgia, Times, Times New Roman, serif">Cambria, Cochin, Georgia, Times</p>
+                <p style="font-family:Candara">Candara</p>
+                <p style="font-family:Castellar">Castellar</p>
+                <p style="font-family:Centaur">Centaur</p>
+                <p style="font-family:Century">Century</p>
+                <p style="font-family:'Century Gothic'">Century Gothic</p>
+                <p style="font-family:'Century Schoolbook'">Century Schoolbook</p>
+                <p style="font-family:Chiller">Chiller</p>
+                <p style="font-family:'Colonna MT'">Colonna MT</p>
+                <p style="font-family:'Comic Sans MS'">Comic Sans MS</p>
+                <p style="font-family:Consolas">Consolas</p>
+                <p style="font-family:Constantia">Constantia</p>
+                <p style="font-family:Cooper">Cooper</p>
+                <p style="font-family:'Copperplate Gothic'">Copperplate Gothic</p>
+                <p style="font-family:Corbel">Corbel</p>
+                <p style="font-family:'Courier New'">Courier New</p>
+                <p style="font-family:Courier New, Courier, monospace">Courier New, Courier Monospace</p>
+                <p style="font-family:'Curlz MT'">Curlz MT</p>
+                <p style="font-family:cursive">Cursive</p>
+                <p style="font-family:Ebrima">Ebrima</p>
+                <p style="font-family:'Edwardian Script ITC'">Edwardian Script ITC</p>
+                <p style="font-family:Elephant">Elephant</p>
+                <p style="font-family:'Engravers MT'">Engravers MT</p>
+                <p style="font-family:'Eras ITC'">Eras ITC</p>
+                <p style="font-family:fantasy">Fantasy</p>
+                <p style="font-family:'Felix Titling'">Felix Titling</p>
+                <p style="font-family:'Footlight MT'">Footlight MT</p>
+                <p style="font-family:Forte">Forte</p>
+                <p style="font-family:'Franklin Gothic'">Franklin Gothic</p>
+                <p style="font-family:'Franklin Gothic Book'">Franklin Gothic Book</p>
+                <p style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif">Franklin Gothic Medium</p>
+                <p style="font-family:'Freestyle Script'">Freestyle Script</p>
+                <p style="font-family:'French Script MT'">French Script MT</p>
+                <p style="font-family:Gabriola">Gabriola</p>
+                <p style="font-family:Gadugi">Gadugi</p>
+                <p style="font-family:Garamond">Garamond</p>
+            </div>
+            <div class="col" style="text-align:center">
+                <p style="font-family:Georgia">Georgia</p>
+                <p style="font-family:Georgia, 'Times New Roman', Times, serif">Georgia, 'Times New Roman'</p>
+                <p style="font-family:Gigi">Gigi</p>
+                <p style="font-family:'Gill Sans'">Gill Sans</p>
+                <p style="font-family:'Gill Sans MT'">Gill Sans MT</p>
+                <p style="font-family:'Global Monospace'">Global Monospace</p>
+                <p style="font-family:'Global Sans Serif'">Global Sans Serif</p>
+                <p style="font-family:'Global Serif'">Global Serif</p>
+                <p style="font-family:'Global User Interface'">Global User Interface</p>
+                <p style="font-family:'Gloucester MT'">Gloucester MT</p>
+                <p style="font-family:'Goudy Old Style'">Goudy Old Style</p>
+                <p style="font-family:'Goudy Stout'">Goudy Stout</p>
+                <p style="font-family:Haettenschweiler">Haettenschweiler</p>
+                <p style="font-family:'Harlow Solid'">Harlow Solid</p>
+                <p style="font-family:Harrington">Harrington</p>
+                <p style="font-family:'High Tower Text'">High Tower Text</p>
+                <p style="font-family:'HoloLens MDL2 Assets'">HoloLens MDL2 Assets</p>
+                <p style="font-family:Impact">Impact</p>
+                <p style="font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif">Impact, Haettenschweiler</p>
+                <p style="font-family:'Imprint MT Shadow'">Imprint MT Shadow</p>
+                <p style="font-family:'Informal Roman'">Informal Roman</p>
+                <p style="font-family:'Ink Free'">Ink Free</p>
+                <p style="font-family:'Javanese Text'">Javanese Text</p>
+                <p style="font-family:Jokerman">Jokerman</p>
+                <p style="font-family:'Juice ITC'">Juice ITC</p>
+                <p style="font-family:'Kristen ITC'">Kristen ITC</p>
+                <p style="font-family:'Kunstler Script'">Kunstler Script</p>
+                <p style="font-family:Leelawadee">Leelawadee</p>
+                <p style="font-family:'Leelawadee UI'">Leelawadee UI</p>
+                <p style="font-family:'Lucida Bright'">Lucida Bright</p>
+                <p style="font-family:'Lucida Calligraphy'">Lucida Calligraphy</p>
+                <p style="font-family:'Lucida Console'">Lucida Console</p>
+                <p style="font-family:'Lucida Fax'">Lucida Fax</p>
+                <p style="font-family:'Lucida Handwriting'">Lucidia Handwriting</p>
+                <p style="font-family:'Lucida Sans'">Lucidia Sans</p>
+                <p style="font-family:'Lucida Sans Typewriter'">Lucidia Sans Typewriter</p>
+                <p style="font-family:'Lucida Sans Unicode'">Lucida Sans Unicode</p>
+                <p style="font-family:Magneto">Magneto</p>
+                <p style="font-family:'Maiandra GD'">Maiandra GD</p>
+                <p style="font-family:'Malgun Gothic'">Malgun Gothic</p>
+                <p style="font-family:Marlett">Marlett</p>
+                <p style="font-family:'Matura MT Script Capitals'">Matura MT Script Capitals</p>
+                <p style="font-family:'Microsoft Himalaya'">Microsoft Himalaya</p>
+                <p style="font-family:'Microsoft JhengHei'">Microsoft JhengHei</p>
+                <p style="font-family:'Microsoft JhengHei UI'">Microsoft JhengHei UI</p>
+                <p style="font-family:'Microsoft New Tai Lue'">Microsoft New Tai Lue</p>
+                <p style="font-family:'Microsoft PhagsPa'">Microsoft PhagsPa</p>
+                <p style="font-family:'Microsoft Sans Serif'">Microsoft Sans Serif</p>
+                <p style="font-family:'Microsoft Tai Le'">Microsoft Tai Le</p>
+                <p style="font-family:'Microsoft Uighur'">Microsoft Uighur</p>
+                <p style="font-family:'Microsoft YaHei'">Microsoft YaHei</p>
+                <p style="font-family:'Microsoft YaHei UI'">Microsoft YaHei UI</p>
+                <p style="font-family:'Microsoft Yi Baiti'">Microsoft Yi Baiti</p>
+                <p style="font-family:MingLiU-ExtB">MingLiU-ExtB</p>
+                <p style="font-family:MingLiU_HKSCS-ExtB">MingLiU_HKSCS-ExtB</p>
+                <p style="font-family:Mistral">Mistral</p>
+                <p style="font-family:'Modern No. 20'">Modern No. 20</p>
+                <p style="font-family:'Mongolian Baiti'">Mongolian Baiti</p>
+                <p style="font-family:monospace">Monospace</p>
+                <p style="font-family:'Monotype Corsiva'">Monotype Corsiva'</p>
+                <p style="font-family:'MS Gothic'">MS Gothic</p>
+                <p style="font-family:'MS Outlook'">MS Outlook</p>
+            </div>
+            <div class="col" style="text-align:center">
+                <p style="font-family:'MS PGothic'">MS PGothic</p>
+                <p style="font-family:'MS Reference Sans Serif'">MS Reference Sans Serif</p>
+                <p style="font-family:'MS Reference Specialty'">MS Reference Specialty</p>
+                <p style="font-family:'MS UI Gothic'">MS UI Gothic</p>
+                <p style="font-family:'MT Extra'">MT Extra</p>
+                <p style="font-family:'MV Boli'">MV Boli</p>
+                <p style="font-family:'Myanmar Text'">Myanmar Text</p>
+                <p style="font-family:'Niagara Engraved'">Niagara Engraved</p>
+                <p style="font-family:'Niagara Solid'">Niagara Solid</p>
+                <p style="font-family:'Nirmala UI'">Nirmala UI</p>
+                <p style="font-family:NSimSun">NSimSun</p>
+                <p style="font-family:'OCR A'">OCR A</p>
+                <p style="font-family:'Old English Text MT'">Old English Text MT</p>
+                <p style="font-family:Onyx">Onyx</p>
+                <p style="font-family:'Palace Script MT'">Palace Script MT</p>
+                <p style="font-family:'Palatino Linotype'">Palatino Linotype</p>
+                <p style="font-family:Papyrus">Papyrus</p>
+                <p style="font-family:Parchment">Parchment</p>
+                <p style="font-family:Perpetua">Perpetua</p>
+                <p style="font-family:'Perpetua Titling MT'">Perpetua Titling MT</p>
+                <p style="font-family:Playbill">Playbill</p>
+                <p style="font-family:PMingLiU-ExtB">PMingLiU-ExtB</p>
+                <p style="font-family:'Poor Richard'">Poor Richard'</p>
+                <p style="font-family:Pristina">Pristina</p>
+                <p style="font-family:Rage">Rage</p>
+                <p style="font-family:Ravie">Ravie</p>
+                <p style="font-family:Rockwell">Rockwell</p>
+                <p style="font-family:sans-serif">Sans-serif</p>
+                <p style="font-family:'Script MT'">Script MT</p>
+                <p style="font-family:'Segoe MDL2 Assets'">Segoe MDL2 Assets</p>
+                <p style="font-family:'Segoe Print'">Segoe Print</p>
+                <p style="font-family:'Segoe Script'">Segoe Script</p>
+                <p style="font-family:'Segoe UI'">Segoe UI</p>
+                <p style="font-family:'Segoe UI Emoji'">Segoe UI Emoji</p>
+                <p style="font-family:'Segoe UI Historic'">Segoe UI Historic</p>
+                <p style="font-family:'Segoe UI Symbol'">Segoe UI Symbol</p>
+                <p style="font-family:serif">Serif</p>
+                <p style="font-family:'Showcard Gothic'">Showcard Gothic</p>
+                <p style="font-family:SimSun">Simsun</p>
+                <p style="font-family:SimSun-ExtB">SimSun-ExtB</p>
+                <p style="font-family:'Sitka Banner'">Sitka Banner</p>
+                <p style="font-family:'Sitka Display'">Sitka Display</p>
+                <p style="font-family:'Sitka Heading'">Sitka Heading</p>
+                <p style="font-family:'Sitka Small'">Sitka Small</p>
+                <p style="font-family:'Sitka Subheading'">Sitka Subheading</p>
+                <p style="font-family:'Sitka Text'">Sitka Text</p>
+                <p style="font-family:'Snap ITC'">Snap ITC</p>
+                <p style="font-family:Stencil">Stencil</p>
+                <p style="font-family:Sylfaen">Sylfaen</p>
+                <p style="font-family:Symbol">Symbol</p>
+                <p style="font-family:Tahoma">Tahoma</p>
+                <p style="font-family:'Tempus Sans ITC'">Tempus Sans ITC</p>
+                <p style="font-family:'Times New Roman'">Times New Roman</p>
+                <p style="font-family:'Trebuchet MS'">Trebuchet MS</p>
+                <p style="font-family:'Tw Cen MT'">Tw Cen MT</p>
+                <p style="font-family:Verdana">Verdana</p>
+                <p style="font-family:Verdana, Geneva, Tahoma, sans-serif">Verdana, Geneva, Tahoma</p>
+                <p style="font-family:'Viner Hand ITC'">Viner Hand ITC</p>
+                <p style="font-family:Vivaldi">Vivaldi</p>
+                <p style="font-family:'Vladimir Script'">Vladimir Script</p>
+                <p style="font-family:'Wide Latin'">Wide Latin</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="content justify-content-center" id="dragSection">
+        <div class="row justify-content-center separate header">
+            <h1>Drag and Drop</h1>
+        </div>
+
+        <div class="row innerContent">
+            <div class="row fullWidth">
+                <h3>&nbsp; Simple</h3>
+            </div>
+            <div class="row  fullWidth">
+                <div class="col">
+                    <div class="dragDiv" id="simpleDragLocation" ondrop="simpleDrop(event);" ondragover="simpleAllowDrop(event);" style="height:150px"></div>
+                </div>
+                <div class="col">
+                    <p id="simpleDragObject0" draggable="true" ondragstart="simpleDrag(event)">1.1. This is the text to drag.</p>
+                    <p id="simpleDragObject1" draggable="true" ondragstart="simpleDrag(event)">1.2. This is some other text to drag.</p>
+                    <p id="simpleDragObject2" draggable="true" ondragstart="simpleDrag(event)">1.3. This is another line of text to drag.</p>
+                    <p id="simpleDragObject3" draggable="true" ondragstart="simpleDrag(event)">1.4. This is a fourth line of text to drag.</p>
+                    <p id="simpleDragObject4" draggable="true" ondragstart="simpleDrag(event)">1.5. This is a fifth line of text to drag.</p>
+                    <p id="simpleDragObject5" draggable="true" ondragstart="simpleDrag(event)">1.6. This is a Sixth line of text to drag.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row innerContent">
+            <div class="row fullWidth">
+                <h3>&nbsp; Simple 2</h3>
+            </div>
+            <div class="row fullWidth">
+                <div class="col">
+                    <div class="dragDiv" id="simple2DragLocation" ondrop="simpleDrop(event);" ondragover="simpleAllowDrop(event);" style="height:150px"></div>
+                </div>
+                <div class="dragDiv" id="simple2DragLocation" ondrop="simpleDrop(event);" ondragover="simpleAllowDrop(event);" style="height:150px">
+                    <div class="col">
+                        <img id="image" src="images/roninLogo.jpg" draggable="true" ondragstart="simpleDrag(event)" style="width:20px; height:20px" />
+                        <p id="simple2DragObject0" draggable="true" ondragstart="simpleDrag(event)">2.1. This is the text to drag.</p>
+                        <p id="simple2DragObject1" draggable="true" ondragstart="simpleDrag(event)">2.2. This is some other text to drag.</p>
+                        <p id="simple2DragObject2" draggable="true" ondragstart="simpleDrag(event)">2.3. This is another line of text to drag.</p>
+                        <p id="simple2DragObject3" draggable="true" ondragstart="simpleDrag(event)">2.4. This is a fourth line of text to drag.</p>
+                        <p id="simple2DragObject4" draggable="true" ondragstart="simpleDrag(event)">2.5. This is a fifth line of text to drag.</p>
+                        <p id="simple2DragObject5" draggable="true" ondragstart="simpleDrag(event)">2.6. This is a Sixth line of text to drag.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row separate innerContent" style="padding-bottom:30px">
+            <div class="row fullWidth">
+                <h3>&nbsp; Files</h3>
+            </div>
+            <div class="row fullWidth">
+                <div class="col">
+                    <div class="dragDiv fileOverride" id="fileDropArea" ondragenter="fileDragEnter(event);" ondragover="fileDragOver(event);" ondragleave="fileDragLeave(event);" ondrop="fileDrop(event);" style="display:flex; margin:auto;">
+                        <div class="col" style="margin:auto">
+                            <h5> Drag Files Here</h5>
+                            <button class="upload" style="font-size:50px; color:black; font-weight:bolder; width:auto" onclick="files();" ><img src="images/fileupload.png" id="fileup" /></button>
+                            <input style=" display:none;" multiple type="file" id="fileDropInput" onchange="doFileStuff(this.files[this.files.length-1])" ondrop="doFileStuff(this.files)" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-2">
+                    <div class="dragDiv fileOverride output" id="fileNameList" ondrop="simpleDrop(event);" ondragover="simpleAllowDrop(event);"></div>
+                </div>
+                <div class="col-4">
+                    <div class="dragDiv fileOverride output" id="filePreview" ondrop="simpleDrop(event);" ondragover="simpleAllowDrop(event);"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="content justify-content-center" id="svgSection" style=" overflow:auto">
+        <div class="row justify-content-center separate header">
+            <h1>SVG</h1>
+        </div>
+        <div class="row separate justify-content-center innerContent">
+            <div class="row justify-content-center fullWidth" >
+                <div class="col" style="width:100%; flex-basis:initial;">
+                    <div class="row fullWidth">
+                        <h3>&nbsp; Simple Shapes</h3>
+                    </div>
+                    <div class="row justify-content-center" style="width:100%;">
+                        <svg id="svg0" style="width:460px; height:125px">
+                            <circle cx="50" cy="50" r="40" stroke="transparent" stroke-width="2" fill="rgb(206, 182, 224)" />
+                            <ellipse cx="150" cy="50" rx="30" ry="47" style="fill:rgb(187, 117, 101); stroke:transparent;stroke-width:2" />
+                            <line x1="225" y1="10" x2="300" y2="80" style="stroke:white; stroke-width:2" />
+                            <polygon points="350,30 400,80 400,40 450,30" style="fill:rgb(196, 65, 35);stroke:transparent; stroke-width:2"></polygon>
+                            <polyline points="500,20 525,80 540,35 550,20 555,25 560,40, 500,40" style="stroke:white; stroke-width:2; fill:transparent"></polyline>
+                            <path d="M600 20 L700 80 L600 60 Z" style="stroke:white; stroke-width:2; fill:rgb(152, 73, 55)"></path>
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="col" style="width:100%; flex-basis:initial;">
+                    <div class="row ">
+                        <h3>&nbsp; Complex Paths</h3>
+                    </div>
+                    <div class="row justify-content-center">
+                        <svg id="svg2" style="width:600px; height:320px; padding-left:30px">
+                            <g>
+                                <circle id="CirA" cx="10" cy="10" r="2" fill="white"></circle>
+                                <circle id="CirB" cx="10" cy="110" r="2" fill="white"></circle>
+                                <circle id="CirC" cx="10" cy="210" r="2" fill="white"></circle>
+                                <circle id="CirD" cx="10" cy="310" r="2" fill="white"></circle>
+
+                                <circle id="CirE" cx="110" cy="10" r="2" fill="white"></circle>
+                                <circle id="CirF" cx="110" cy="110" r="2" fill="white"></circle>
+                                <circle id="CirG" cx="110" cy="210" r="2" fill="white"></circle>
+                                <circle id="CirH" cx="110" cy="310" r="2" fill="white"></circle>
+
+                                <circle id="CirI" cx="210" cy="10" r="2" fill="white"></circle>
+                                <circle id="CirJ" cx="210" cy="110" r="2" fill="white"></circle>
+                                <circle id="CirK" cx="210" cy="210" r="2" fill="white"></circle>
+                                <circle id="CirL" cx="210" cy="310" r="2" fill="white"></circle>
+
+                                <circle cx="300" cy="10" r="3" fill="rgb(187, 117, 101)"></circle>
+                                <circle cx="300" cy="43" r="3" fill="rgb(213, 185, 179)"></circle>
+                                <circle cx="300" cy="65" r="3" fill="rgb(196, 65, 35)"></circle>
+                                <circle cx="300" cy="87" r="3" fill="rgb(126, 111, 138)"></circle>
+                                <circle cx="300" cy="109" r="3" fill="rgb(206, 182, 224)"></circle>
+                            </g>
+                            <g>
+                                <path id="LineAF" d="M10 10 L 110 110" style="stroke:rgb(187, 117, 101); stroke-width:2;fill:transparent"></path>
+                                <path id="LineFI" d="M110 110 L 210 10" style="stroke:rgb(187, 117, 101); stroke-width:2;fill:transparent"></path>
+                                <path id="HorizontalLineB" d="M10 110 H 210" style="stroke:rgb(213, 185, 179); stroke-width:2;fill:transparent"></path>
+                                <path id="QuadraticBezierCurveAFI" d="M10 10 Q 110 110 210 10" style="stroke:rgb(196, 65, 35); stroke-width:2;fill:transparent"></path>
+                                <path id="CurveCBJK" d="M 10,210 C 10,110 210,110 210,210" style="stroke:rgb(126, 111, 138); stroke-width:2;fill:transparent"></path>
+                                <path id="ArcKC" d="M210 210 A 30 30 0 0 1 10 210" style="stroke:rgb(206, 182, 224); stroke-width:2;fill:transparent"></path>
+                                <path id="ArcCK" d="M10 210 A 30 30 0 0 1 210 210" style="stroke:rgb(206, 182, 224); stroke-width:2;fill:transparent"></path>
+                            </g>
+                            <g fill="white" text-anchor="middle" font-size="10px">
+                                <text x="10" y="10" dx="15">A</text>
+                                <text x="10" y="110" dx="15">B</text>
+                                <text x="10" y="210" dx="15">C</text>
+                                <text x="10" y="310" dx="15">D</text>
+
+                                <text x="110" y="10" dx="15">E</text>
+                                <text x="110" y="110" dx="15">F</text>
+                                <text x="110" y="210" dx="15">G</text>
+                                <text x="110" y="310" dx="15">H</text>
+
+                                <text x="210" y="10" dx="15">I</text>
+                                <text x="210" y="110" dx="15">J</text>
+                                <text x="210" y="210" dx="15">K</text>
+                                <text x="210" y="310" dx="15">L</text>
+
+                                <text x="300" y="14" dx="20">Line:</text>
+                                <text x="300" y="25" dx="80">d="M10 10 L 110 110"</text>
+                                <text x="300" y="36" dx="83">d="M110 110 L 210 10"</text>
+
+                                <text x="300" y="47" dx="53">Horizontal Line:</text>
+                                <text x="300" y="58" dx="72">d="M10 110 H 210"</text>
+
+                                <text x="300" y="69" dx="74">Quadratic Bézier Curve:</text>
+                                <text x="300" y="80" dx="102">d="M10 10 Q 110 110 210 10"</text>
+
+                                <text x="300" y="91" dx="23">Curve:</text>
+                                <text x="300" y="102" dx="132">d="M10 210 C 10 110 210 110 210 210"</text>
+
+                                <text x="300" y="113" dx="23">Arc:</text>
+                                <text x="300" y="124" dx="120">d="M210 210 A 30 30 0 0 1 10 210"</text>
+                                <text x="300" y="135" dx="120">d="M210 210 A 30 30 0 0 1 10 210"</text>
+
+                            </g>
+                        </svg>
+                        <svg id="svg1" style="width:900px; height:350px; transform:scale(.75)">
+                            <line x1="0" y1="350" x2="350" y2="350" style="stroke:white; stroke-width:2" />
+                            <line x1="0" y1="0" x2="0" y2="500" style="stroke:white; stroke-width:2" />
+                            <path d="M 0,350 Q 50,10 100,175 T 300,10" stroke="rgb(196, 65, 35)" fill="transparent" stroke-width="3"></path>
+                            <path d="M 0,350 C 50,10 50,10 100,175 S 300,10 300,10 " stroke="rgb(206, 182, 224)" stroke-width="3" fill="transparent"></path>
+                            <text fill="white" x="360" y="12" dx="10">Comparison between <tspan style="fill:rgb(196, 65, 35)">Quadratic Bézier Curves</tspan> and <tspan style="fill:rgb(206, 182, 224)">Curves</tspan></text>
+                            <circle cx="390" cy="25" r="3" fill="rgb(196, 65, 35)"></circle>
+                            <circle cx="390" cy="50" r="3" fill="rgb(206, 182, 224)"></circle>
+                            <text fill="white" x="390" y="30" dx="10">d="M 0,350 Q 50,10 100,175 T 300,10"</text>
+                            <text fill="white" x="390" y="54" dx="10">d="M 0,350 C 50,10 50,10 100,175 S 300,10 300,10"</text>
+                        </svg>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+    <div class="content justify-content-center" id="svgGraphSection">
+        <div class="row justify-content-center separate header">
+            <h1>Creating Responsive Graphs using SVG</h1>
+        </div>
+        <div class="col">
+            <div class="row fullWidth">
+                <h3>&nbsp;</h3>
+            </div>
+            <div class="row justify-content-center fullWidth" style="min-width:800px">
+                <svg id="svgGraph" style="width:1100px; height:600px; padding-left:30px">
+                    <g>
+                        <path d="M550, 50 L 550, 550" stroke-width="2" stroke="white"></path>
+                        <path d="M50, 300 L 1050, 300" stroke-width="2" stroke="white"></path>
+                        <path d="M50, 60 H 1050" stroke-width="1" stroke="rgba(255, 255, 255, 0.2)" stroke-dasharray="8"></path>
+                        <path d="M50, 80 H 1050" stroke-width="1" stroke="rgba(255, 255, 255, 0.2)" stroke-dasharray="8"></path>
+                        <path d="M50, 100 H 1050" stroke-width="1" stroke="rgba(255, 255, 255, 0.2)" stroke-dasharray="8"></path>
+                        <path d="M50, 120 H 1050" stroke-width="1" stroke="rgba(255, 255, 255, 0.2)" stroke-dasharray="8"></path>
+                        <path d="M50, 140 H 1050" stroke-width="1" stroke="rgba(255, 255, 255, 0.2)" stroke-dasharray="8"></path>
+                        <path d="M50, 160 H 1050" stroke-width="1" stroke="rgba(255, 255, 255, 0.2)" stroke-dasharray="8"></path>
+                        <path d="M50, 180 H 1050" stroke-width="1" stroke="rgba(255, 255, 255, 0.2)" stroke-dasharray="8"></path>
+                        <path d="M50, 200 H 1050" stroke-width="1" stroke="rgba(255, 255, 255, 0.2)" stroke-dasharray="8"></path>
+                        <path d="M50, 220 H 1050" stroke-width="1" stroke="rgba(255, 255, 255, 0.2)" stroke-dasharray="8"></path>
+                        <path d="M50, 240 H 1050" stroke-width="1" stroke="rgba(255, 255, 255, 0.2)" stroke-dasharray="8"></path>
+                        <path d="M50, 260 H 1050" stroke-width="1" stroke="rgba(255, 255, 255, 0.2)" stroke-dasharray="8"></path>
+                        <path d="M50, 280 H 1050" stroke-width="1" stroke="rgba(255, 255, 255, 0.2)" stroke-dasharray="8"></path>
+                        <path d="M50, 300 H 1050" stroke-width="1" stroke="rgba(255, 255, 255, 0.2)" stroke-dasharray="8"></path>
+                        <path d="M50, 320 H 1050" stroke-width="1" stroke="rgba(255, 255, 255, 0.2)" stroke-dasharray="8"></path>
+                        <path d="M50, 340 H 1050" stroke-width="1" stroke="rgba(255, 255, 255, 0.2)" stroke-dasharray="8"></path>
+                        <path d="M50, 360 H 1050" stroke-width="1" stroke="rgba(255, 255, 255, 0.2)" stroke-dasharray="8"></path>
+                        <path d="M50, 380 H 1050" stroke-width="1" stroke="rgba(255, 255, 255, 0.2)" stroke-dasharray="8"></path>
+                        <path d="M50, 400 H 1050" stroke-width="1" stroke="rgba(255, 255, 255, 0.2)" stroke-dasharray="8"></path>
+                        <path d="M50, 420 H 1050" stroke-width="1" stroke="rgba(255, 255, 255, 0.2)" stroke-dasharray="8"></path>
+                        <path d="M50, 440 H 1050" stroke-width="1" stroke="rgba(255, 255, 255, 0.2)" stroke-dasharray="8"></path>
+                        <path d="M50, 460 H 1050" stroke-width="1" stroke="rgba(255, 255, 255, 0.2)" stroke-dasharray="8"></path>
+                        <path d="M50, 480 H 1050" stroke-width="1" stroke="rgba(255, 255, 255, 0.2)" stroke-dasharray="8"></path>
+                        <path d="M50, 500 H 1050" stroke-width="1" stroke="rgba(255, 255, 255, 0.2)" stroke-dasharray="8"></path>
+                        <path d="M50, 520 H 1050" stroke-width="1" stroke="rgba(255, 255, 255, 0.2)" stroke-dasharray="8"></path>
+                        <path d="M50, 540 H 1050" stroke-width="1" stroke="rgba(255, 255, 255, 0.2)" stroke-dasharray="8"></path>
+                        <path d="M100, 50 V 550" stroke-width="1" stroke="rgba(255, 255, 255, 0.2)" stroke-dasharray="5"></path>
+                        <path d="M150, 50 V 550" stroke-width="1" stroke="rgba(255, 255, 255, 0.2)" stroke-dasharray="5"></path>
+                        <path d="M200, 50 V 550" stroke-width="1" stroke="rgba(255, 255, 255, 0.2)" stroke-dasharray="5"></path>
+                        <path d="M250, 50 V 550" stroke-width="1" stroke="rgba(255, 255, 255, 0.2)" stroke-dasharray="5"></path>
+                        <path d="M300, 50 V 550" stroke-width="1" stroke="rgba(255, 255, 255, 0.2)" stroke-dasharray="5"></path>
+                        <path d="M350, 50 V 550" stroke-width="1" stroke="rgba(255, 255, 255, 0.2)" stroke-dasharray="5"></path>
+                        <path d="M400, 50 V 550" stroke-width="1" stroke="rgba(255, 255, 255, 0.2)" stroke-dasharray="5"></path>
+                        <path d="M450, 50 V 550" stroke-width="1" stroke="rgba(255, 255, 255, 0.2)" stroke-dasharray="5"></path>
+                        <path d="M500, 50 V 550" stroke-width="1" stroke="rgba(255, 255, 255, 0.2)" stroke-dasharray="5"></path>
+                        <path d="M550, 50 V 550" stroke-width="1" stroke="rgba(255, 255, 255, 0.2)" stroke-dasharray="5"></path>
+                        <path d="M600, 50 V 550" stroke-width="1" stroke="rgba(255, 255, 255, 0.2)" stroke-dasharray="5"></path>
+                        <path d="M650, 50 V 550" stroke-width="1" stroke="rgba(255, 255, 255, 0.2)" stroke-dasharray="5"></path>
+                        <path d="M700, 50 V 550" stroke-width="1" stroke="rgba(255, 255, 255, 0.2)" stroke-dasharray="5"></path>
+                        <path d="M750, 50 V 550" stroke-width="1" stroke="rgba(255, 255, 255, 0.2)" stroke-dasharray="5"></path>
+                        <path d="M800, 50 V 550" stroke-width="1" stroke="rgba(255, 255, 255, 0.2)" stroke-dasharray="5"></path>
+                        <path d="M850, 50 V 550" stroke-width="1" stroke="rgba(255, 255, 255, 0.2)" stroke-dasharray="5"></path>
+                        <path d="M900, 50 V 550" stroke-width="1" stroke="rgba(255, 255, 255, 0.2)" stroke-dasharray="5"></path>
+                        <path d="M950, 50 V 550" stroke-width="1" stroke="rgba(255, 255, 255, 0.2)" stroke-dasharray="5"></path>
+                        <path d="M1000, 50 V 550" stroke-width="1" stroke="rgba(255, 255, 255, 0.2)" stroke-dasharray="5"></path>
+                        <path d="M1050, 50 V 550" stroke-width="1" stroke="rgba(255, 255, 255, 0.2)" stroke-dasharray="5"></path>
+                    </g>
+                    <g>
+                    </g>
+                    <g fill="white" text-anchor="middle" font-size="10px">
+                    </g>
+                </svg>
+                <div style="padding:10px" id="graphControls">
+                    <div class="row">
+                        &nbsp;&nbsp;&nbsp;&nbsp;<button class="toggle" onclick="addPoint(event); " style="width:50px;height:50px;font-size:12px; border-radius:50px; font-weight:100">Add Point</button>
+                        &nbsp;&nbsp;<button class="toggle" onclick="toggleLine()" id="lineButton" style="width:50px;height:50px;font-size:12px; border-radius:50px; font-weight:100">Add Line</button>
+                    </div>
+                    <br />
+                    <br />
+                    <p>X: <input class="pointInput" type="text" id="pointXInput" placeholder="0" /></p>
+                    <p>Y: <input class="pointInput" type="text" id="pointYInput" placeholder="0" /></p>
+                    <p>Number of Points: <label id="numPointsLabel"></label></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="content justify-content-center" id="canvasSection" style=" min-height:110vh;">
+        <div class="row justify-content-center separate header">
+            <h1>Canvas</h1>
+        </div>
+        <div class="row justify-content-center innerContent">
+            <div class="col justify-content-center" style=" flex-basis:initial; width:auto">
+                <div class="row">
+                    <h3>&nbsp;<button onclick="drawCanvas0();"> Animation 1</button></h3> <h3>&nbsp;<button onclick="drawCanvas1();"> Responsive Canvas </button></h3>
+                </div>
+                <div class="row  justify-content-center " style="">
+                    <canvas id="canvas0" width="750" height="300"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="content justify-content-center" id="socketManagementSection">
+        <div class="row justify-content-center separate header">
+            <h1>Web Socket Management Example</h1>
+        </div>
+        <div class="row justify-content-center separate innerContent">
+            <div class="col justify-content-center" style=" width:auto; text-align:left; ">
+                <h3>SocketManager.js</h3>
+                <p class="" style="white-space:pre-wrap;padding:0; font-size:15px; line-height:15px; width:800px"><comment>
+/**
+* Initializes socket and creates website response to
+* server messages
+*
+* Initializes socket(a)
+* Upon connection(b)
+*      request accounts
+*      request groups
+* Response on message(c)
+*      creates error message when message result is fail
+*      otherwise execute proper response
+* Return socket
+* */</comment>
+    <va>var</va> socketManager = (<va>function</va> () {
+    <comment>//(a)</comment>
+    <va>var</va> address = <pt>"ws://localhost:6550/"</pt>;
+    <va>var</va> socket = <va>new</va> WebSocket(address);
+        socket.onopen = <va>function</va> () {
+        console.log(<pt>"Connected to Server."</pt>);
+    };
+        socket.onclose = <va>function</va> () {
+        console.log(<pt>"Disconnected from Server."</pt>);
+    };
+    <comment>//(b)</comment>
+        socket.onerror = <va>function</va> () {
+        console.log(<pt>"Unable to Connect to Server."</pt>);
+    };
+        socket.addEventListener(<pt>'open'</pt>, <va>function</va> (event) {
+        console.log(<pt>"Connection is open."</pt>);
+    });
+    socket.onmessage = <va>function</va> (evnt) {
+        console.log(<pt>"Message Recieved: " + evnt.data + "."</pt>);
+        var message = JSON.parse(evnt.data);
+        <comment>//(c)--Depends on how the server formats</comment>
+        <va>if</va> (message.result == <pt>"Fail"</pt>) {
+            window.alert(<pt>"Error "</pt> + message.response +<pt>": "</pt> + message.detail);
+        }
+        <va>else</va> {
+            <va>switch</va> (message.response) {
+                <va>case</va> <pt>"response 1"</pt>:
+                {
+                    <va>break</va>;
+                }
+                <va>default</va>:
+                {
+                    location.reload();
+                }
+    }   }   }
+    <va>return</va> {
+        getSocket: <va>function</va> () {
+        <va>return</va> socket;
+        }
+    }
+    })();
+
+    $(window).on(<pt>'beforeunload'</pt>, <va>function</va> () {
+        socket.close();
+    });
+
+    <va>function</va> request(request, content) {
+        var request = {
+            request: request, fields: content
+        };
+        sendRequest(request);
+    };
+
+    <va>function</va> sendRequest(request) {
+        console.log(request);
+        socket.send(JSON.stringify(request));
+     };
+                </p>
+                <br />
+                <h3>Usage</h3>
+                <p style="white-space:pre-wrap">
+                    <br />  <va>var</va> socket = socketManager.getSocket();
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="content justify-content-center" id="animationSection">
+        <div class="row justify-content-center separate header">
+            <h1>Animations</h1>
+        </div>
+        <div class="row innerContent">
+            <h2>Animations</h2>
+        </div>
+        <div class="row justify-content-center innerContent" style="display:flex;flex-wrap:wrap">
+            <div class="col colAnimation" style="display:inline">
+                <center>
+                    <div class="animationElement" id="animationElement">
+                        <img src="images/shipCrop.png" style="width:50px;height:auto; margin:auto; transform:rotate(45deg)" />
+                    </div>
+                </center>
+            </div>
+            <div class="col colAnimation">
+                <h3>Effects</h3>
+                <div class="buttonDiv">
+                    <button class="animationBtn" id="translate(10vw)" onclick=" toggleAnimationButton(this.id);">Move</button>
+                    <button class="animationBtn" id="rotate(180deg)" onclick="  toggleAnimationButton(this.id);">Rotate</button>
+                    <button class="animationBtn" id="opacityIn" onclick="toggleAnimationButton(this.id);">Fade In</button>
+                    <button class="animationBtn" id="opacityOut" onclick="toggleAnimationButton(this.id);">Fade Out</button>
+                    <button class="animationBtn" id="scale(.5)" onclick="toggleAnimationButton(this.id);">Scale</button>
+                    <button class="animationBtn" id="background-color" onclick="toggleAnimationButton(this.id);">Color</button>
+                </div>
+            </div>
+            <div class="col colAnimation">
+                <h3>Trigger</h3>
+                <div class="buttonDiv">
+                    <button class="animationBtn animationToggleBtn" id="noTrigger" onclick="toggleAnimationButton(this.id);" selected="true">No trigger</button>
+                    <button class="animationBtn" id="hoverTrigger" onclick="toggleAnimationButton(this.id);">Hover</button>
+                    <button class="animationBtn" id="clickTrigger" onclick="toggleAnimationButton(this.id);">Click</button>
+                    <button class="animationBtn" id="enterTrigger" onclick="toggleAnimationButton(this.id);">Key up</button>
+                    <button class="animationBtn" id="scrollTrigger" onclick="toggleAnimationButton(this.id);">Scroll</button>
+                </div>
+            </div>
+            <div class="col colAnimation">
+                <h3>Timing Functions</h3>
+                <div class="buttonDiv">
+                    <button class="animationBtn animationToggleBtn" id="noTimeF" onclick="toggleAnimationButton(this.id);">None</button>
+                    <button class="animationBtn" id="linearTimeF" onclick="toggleAnimationButton(this.id);">Linear</button>
+                    <button class="animationBtn" id="easeTimeF" onclick="toggleAnimationButton(this.id);">Ease</button>
+                    <button class="animationBtn" id="easeinTimeF" onclick="toggleAnimationButton(this.id);">Ease-in</button>
+                    <button class="animationBtn" id="easeoutTimeF" onclick="toggleAnimationButton(this.id);">Ease-out</button>
+                    <button class="animationBtn" id="easeinoutTimeF" onclick="toggleAnimationButton(this.id);">Ease-in-out</button>
+                </div>
+            </div>
+            <div class="col colAnimation">
+                <h3>Duration</h3>
+                <div class="buttonDiv" style="text-align:center; display:initial">
+                    <input class="pointInput" type="text" id="animationDurationInput" />
+                </div>
+            </div>
+            <div class="col colAnimation">
+                <h3>Delay</h3>
+                <div class="buttonDiv" style="text-align:center; display:initial">
+                    <input class="pointInput" type="text" id="animationDelayInput" />
+                </div>
+            </div>
+        </div>
+        <br />
+         <div class="row fullWidth innerContent">
+             <h2>Making Keyframe Animations</h2>
+         </div>
+         <div class="row fullWidth">
+             <div class="col" style="white-space:pre-wrap">
+                 <cssvar1>#animationElement0</cssvar1> {
+                 &nbsp;&nbsp;&nbsp;&nbsp;<cssvar2>animation</cssvar2>: custAnimation0 15s infinite ease-in-out;
+                 }
+                  <cssvar1>#animationSubElement0</cssvar1> {
+                 &nbsp;&nbsp;&nbsp;&nbsp;<cssvar2>animation</cssvar2>: custSubAnimation0 15s infinite ease-in-out;
+                 }
+                 <cssvar0>@-webkit-keyframes custAnimation0</cssvar0>{
+                     <cssvar1>0%</cssvar1> {
+                        <cssvar2>background-color</cssvar2>: rgb(125, 67, 53);
+                        <cssvar2>transform</cssvar2>:rotate(0deg) scale(1);
+                     }
+                     <cssvar1>50%</cssvar1> {
+                        <cssvar2>background-color</cssvar2>: rgb(90, 17, 144);
+                        <cssvar2>transform</cssvar2>: rotate(360deg) scale(.5);
+                     }
+                     <cssvar1>100%</cssvar1> {
+                        <cssvar2>background-color</cssvar2>: rgb(125, 67, 53);
+                        <cssvar2>transform</cssvar2>: rotate(0deg) scale(1);
+                     }
+                 }
+                  <cssvar0>@-webkit-keyframes custAnimation0</cssvar0>{
+                     <cssvar1>0%</cssvar1> {
+                        <cssvar2>transform</cssvar2>:rotate(45deg) scale(1);
+                     }
+                     <cssvar1>50%</cssvar1> {
+                        <cssvar2>transform</cssvar2>: rotate(-315deg) scale(.5);
+                     }
+                     <cssvar1>100%</cssvar1> {
+                        <cssvar2>transform</cssvar2>: rotate(45deg) scale(1);
+                     }
+                 }
+             </div>
+             <div class="col justify-content-center" style="display:inline-block">
+                     <div class="animationElement" id="animationElement0">
+                         <img id="animationSubElement0" src="images/shipCrop.png" style="width:50px;height:auto; margin:auto; transform:rotate(45deg)" />
+                     </div>
+             </div>
+         </div>
+    </div>
+
+    <div class="foot" style="z-index:100">
+        <div class="footer" style=""></div>
+        <div class="row footer justify-content-center " style="background-color:rgba(40,40,40,0.2); background-image:none">
+
+            <button class="slide" id="fontSlideBtn" onclick="changeDisplay(0);"></button>
+            &nbsp;
+            <!--&#9679; &#9675;-->
+            <button class="slide" id="dragSlideBtn" onclick="changeDisplay(1);">  </button>
+            &nbsp;
+            <button class="slide" id="svgSlideBtn" onclick="changeDisplay(2);"> </button>
+            &nbsp;
+            <button class="slide" id="svgGraphSlideBtn" onclick="changeDisplay(3);"> </button>
+            &nbsp;
+            <button class="slide" id="canvasSlideBtn" onclick="changeDisplay(4);"> </button>
+            &nbsp;
+            <button class="slide" id="socketManagementSlideBtn" onclick="changeDisplay(5);"> </button>
+            &nbsp;
+            <button class="slide" id="animationSlideBtn" onclick="changeDisplay(6);"> </button>
+
+
+        </div>
+    </div>
+
+
+</body>
+
+</html>
